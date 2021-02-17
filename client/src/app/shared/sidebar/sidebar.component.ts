@@ -8,11 +8,9 @@ import { MenuItem } from '../models/menu-options';
 })
 export class SidebarComponent {
   public links: MenuItem[] = [
-    { label: 'Recipe list', icon: 'library_books', href: 'recipe/list' },
-    { label: 'Add new recipe', icon: 'bookmark_add', href: 'recipe/new' },
+    { label: 'Recipe list', icon: 'library_books', href: '/recipe' },
+    { label: 'Add new recipe', icon: 'bookmark_add', href: '/recipe' },
   ];
 
   constructor() {}
-
-  ngOnInit(): void {}
 }
