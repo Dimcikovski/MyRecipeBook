@@ -6,18 +6,15 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    children: [
-      {
-        path: 'recipe',
-        loadChildren: () =>
-          import('./recipe/recipe.module').then((m) => m.RecipeModule),
-      },
-      {
-        path: '**',
-        redirectTo: '',
-        pathMatch: 'full',
-      },
-    ],
+  },
+  {
+    path: 'recipe',
+    loadChildren: () =>
+      import('./recipe/recipe.module').then((m) => m.RecipeModule),
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
 

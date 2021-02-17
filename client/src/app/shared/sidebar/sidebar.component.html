@@ -5,6 +5,7 @@
       *ngFor="let link of links"
       routerLink="{{ link.href }}"
       routerLinkActive="active"
+      (click)="CloseSidebar()"
     >
       <span mat-line> {{ link.label }}</span>
       <mat-icon mat-list-icon>{{ link.icon }}</mat-icon>

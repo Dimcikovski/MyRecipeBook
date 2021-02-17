@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+  th {
+    min-width: 100px;
+  }
+}
+
+.recipe-list-table__wrapper {
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
