@@ -7,7 +7,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Source</mat-label>
-        <input matInput formControlName="source" required />
+        <input matInput formControlName="source" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Preparation</mat-label>
@@ -22,10 +22,43 @@
 
   <div class="recipe-details__ingredients">
     <h1>Add ingredients:</h1>
+    <mat-divider></mat-divider>
+    <div class="recipe-details__ingredients-container">
+      <mat-form-field>
+        <mat-label>Select Ingredient</mat-label>
+        <mat-select [formControl]="ingredientsFormControl" required>
+          <mat-option
+            *ngFor="let ingredient of availableIngredients"
+            [value]="ingredient"
+          >
+            {{ ingredient.name }}
+          </mat-option>
+          <mat-hint>Enter at least one ingredient</mat-hint>
+        </mat-select>
+      </mat-form-field>
+      <button
+        *ngIf="ingredientsFormControl.value !== ''"
+        mat-raised-button
+        [disabled]="IngredientExists()"
+        (click)="AddIngredient()"
+        color="primary"
+      >
+        Add
+      </button>
+    </div>
+    <div class="recipe-details__ingredients-list">
+      <div
+        class="recipe-details__ingredients-list--item"
+        *ngFor="let item of selectedIngredients"
+      >
+        <label>{{ item.name }}</label>
+        <label>{{ item.metrics }}</label>
+      </div>
+    </div>
   </div>
 </div>
 <div class="recipe-details__actions">
   <button mat-raised-button color="primary">Save</button>
-  <button mat-raised-button>Reset</button>
-  <button mat-raised-button color="warn">Exit</button>
+  <button mat-raised-button (click)="Reset()">Reset</button>
+  <button mat-raised-button (click)="Exit()" color="warn">Exit</button>
 </div>

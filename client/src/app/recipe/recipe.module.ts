@@ -6,7 +6,7 @@ import { RecipeListTableComponent } from './components/recipe-list-table/recipe-
 import { SharedModule } from '../shared/shared.module';
 import { RecipeAddComponent } from './containers/recipe-add/recipe-add.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,13 @@ import { FormBuilder } from '@angular/forms';
     RecipeAddComponent,
     RecipeDetailsComponent,
   ],
-  imports: [CommonModule, RecipeRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    RecipeRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   providers: [FormBuilder],
 })
 export class RecipeModule {}
