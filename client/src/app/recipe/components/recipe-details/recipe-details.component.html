@@ -11,7 +11,12 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Preparation</mat-label>
-        <input matInput type="time" formControlName="preparation" required />
+        <input
+          matInput
+          placeholder="ex. 01:30, 00:25 .."
+          formControlName="preparation"
+          required
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Preparation instructions</mat-label>
@@ -51,8 +56,7 @@
         class="recipe-details__ingredients-list--item"
         *ngFor="let item of selectedIngredients"
       >
-        <label>{{ item.name }}</label>
-        <label>{{ item.metrics }}</label>
+        <app-recipe-ingredient [ingredient]="item"></app-recipe-ingredient>
       </div>
     </div>
   </div>

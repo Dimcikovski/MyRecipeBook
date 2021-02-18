@@ -21,7 +21,7 @@ export class RecipeDetailsComponent implements OnInit {
   public ingredients: Ingredient[] = [];
   public ingredientsFormControl = new FormControl('', Validators.required);
   public availableIngredients = INGREDIENTS;
-  public selectedIngredients: Ingredient[];
+  public selectedIngredients: Ingredient[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -45,13 +45,19 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   AddIngredient() {
-    console.log(this.ingredientsFormControl.value);
-    let item = { ...this.ingredientsFormControl.value };
+    let item = { ...this.ingredientsFormControl.value, quantity: 1 };
     this.selectedIngredients.push(item);
   }
 
   IngredientExists() {
-    return false;
+    if (this.ingredientsFormControl.value) {
+      const exists = this.selectedIngredients.filter(
+        (item) => item.id === this.ingredientsFormControl.value.id
+      );
+      return exists.length > 0;
+    } else {
+      return false;
+    }
   }
 
   Reset() {

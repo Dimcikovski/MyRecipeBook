@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RecipeAddComponent } from './containers/recipe-add/recipe-add.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipeIngredientComponent } from './components/recipe-ingredient/recipe-ingredient.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     RecipeListTableComponent,
     RecipeAddComponent,
     RecipeDetailsComponent,
+    RecipeIngredientComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,9 @@
+<div class="recipe-ingredient__container">
+  <label>{{ ingredient.name }}</label>
+  <mat-form-field>
+    <input matInput [formControl]="quantity" required />
+    <mat-error>Field is required</mat-error>
+  </mat-form-field>
+  <label>{{ ingredient.metrics }}</label>
+  <mat-icon>delete</mat-icon>
+</div>
