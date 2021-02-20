@@ -17,9 +17,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class RecipeListComponent implements OnInit, OnDestroy {
   public recipeList$: Observable<Recipe[]>;
   public componentActive = true;
+
   constructor(
     private store: Store<RecipeState>,
-    private _snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +29,15 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       select(getRecipesList),
       takeWhile(() => this.componentActive)
     );
+
+    this.ListenForStateChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.componentActive = false;
+  }
+
+  ListenForStateChanges(): void {
     this.store
       .pipe(
         select(getRecipeCallState),
@@ -35,14 +45,10 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       )
       .subscribe((state) => {
         if (state === LoadingState.ERROR) {
-          this._snackBar.open('Could not load recipe list', '', {
+          this.snackBar.open('Could not load recipe list', '', {
             duration: 3000,
           });
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this.componentActive = false;
   }
 }

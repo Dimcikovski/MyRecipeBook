@@ -5,6 +5,9 @@
   <mat-divider></mat-divider>
 
   <mat-card-content>
-    <app-recipe-details [newEntry]="true"></app-recipe-details>
+    <app-recipe-details
+      [newEntry]="true"
+      (addRecipe)="AddRecipe($event)"
+    ></app-recipe-details>
   </mat-card-content>
 </mat-card>

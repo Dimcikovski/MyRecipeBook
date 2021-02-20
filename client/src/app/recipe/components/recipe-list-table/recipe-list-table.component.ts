@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { Recipe } from '../../models/recipe.model';
-const ELEMENT_DATA = [];
 @Component({
   selector: 'app-recipe-list-table',
   templateUrl: './recipe-list-table.component.html',
@@ -9,7 +9,7 @@ const ELEMENT_DATA = [];
 })
 export class RecipeListTableComponent implements OnInit {
   @Input() data: Recipe[] = [];
-  displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     'id',
     'name',
     'source',
@@ -18,13 +18,16 @@ export class RecipeListTableComponent implements OnInit {
     'time',
     'actions',
   ];
-  dataSource = ELEMENT_DATA;
+  public dataSource;
 
   constructor(private dialogService: DialogService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data);
+    this.dataSource = new MatTableDataSource(this.data);
+  }
 
-  RemoveRecipe(recipe: Recipe) {
+  RemoveRecipe(recipe: Recipe): void {
     this.dialogService
       .OpenConfirmDialog(
         'Are you sure you want to delete recipe ?',
@@ -37,5 +40,5 @@ export class RecipeListTableComponent implements OnInit {
       });
   }
 
-  ViewRecipe(recipe: Recipe) {}
+  ViewRecipe(recipe: Recipe): void {}
 }

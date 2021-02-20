@@ -14,7 +14,13 @@
       <div class="recipe-details__form-duration">
         <mat-form-field>
           <mat-label>Hours</mat-label>
-          <input type="number" min="0" matInput formControlName="hours" />
+          <input
+            type="number"
+            min="0"
+            max="59"
+            matInput
+            formControlName="hours"
+          />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Minutes</mat-label>
@@ -29,7 +35,11 @@
       </div>
       <mat-form-field>
         <mat-label>Preparation instructions</mat-label>
-        <input matInput formControlName="preparationInstructions" required />
+        <textarea
+          matInput
+          formControlName="preparationInstructions"
+          required
+        ></textarea>
         <mat-error>Required field</mat-error>
       </mat-form-field>
     </form>

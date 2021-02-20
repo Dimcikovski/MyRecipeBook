@@ -24,11 +24,11 @@ export class RecipeIngredientComponent implements OnInit {
     this.quantity.setValue(this.ingredient.quantity);
   }
 
-  RemoveIngredient() {
+  RemoveIngredient(): void {
     this.removeIngredient.emit(this.ingredient.id);
   }
 
-  UpdateQuantity() {
+  UpdateQuantity(): void {
     const updatedIngredient: Ingredient = {
       ...this.ingredient,
       quantity: this.quantity.value !== null ? this.quantity.value : 1,

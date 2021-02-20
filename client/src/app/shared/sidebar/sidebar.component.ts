@@ -16,7 +16,7 @@ export class SidebarComponent {
 
   constructor() {}
 
-  CloseSidebar() {
+  CloseSidebar(): void {
     this.closeSidebar.emit();
   }
 }

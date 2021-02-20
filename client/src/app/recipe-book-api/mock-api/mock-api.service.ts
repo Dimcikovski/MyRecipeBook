@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/recipe/models/recipe.model';
 import { environment } from 'src/environments/environment';
+import { RecipeDTO } from './models/recipeDTO.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,20 +14,20 @@ export class MockApiService {
 
   constructor(private http: HttpClient) {}
 
-  CreateRecipe(recipe: Recipe) {
-    return this.http.post(`${this.SERVER_URL}/recipe`, recipe, {
+  CreateRecipe(recipe: Recipe): Observable<RecipeDTO> {
+    return this.http.post<RecipeDTO>(`${this.SERVER_URL}/recipe`, recipe, {
       headers: this.headers,
     });
   }
 
-  DeleteRecipe(recipeId: number) {
-    return this.http.post(`${this.SERVER_URL}/recipe/${recipeId}`, {
+  DeleteRecipe(recipeId: number): Observable<RecipeDTO> {
+    return this.http.post<RecipeDTO>(`${this.SERVER_URL}/recipe/${recipeId}`, {
       headers: this.headers,
     });
   }
 
-  GetAllRecipes() {
-    return this.http.get(`${this.SERVER_URL}/recipe/list`, {
+  GetAllRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.SERVER_URL}/recipe-list`, {
       headers: this.headers,
     });
   }

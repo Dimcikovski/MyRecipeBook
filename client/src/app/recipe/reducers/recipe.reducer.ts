@@ -33,9 +33,32 @@ const scoreboardReducer = createReducer(
     recipeList: [],
     callState: LoadingState.ERROR,
     message: action.errorMessage,
+  })),
+  on(RecipeActions.addRecipe, (state) => ({
+    ...state,
+    callState: LoadingState.LOADING,
+  })),
+  on(RecipeActions.addRecipeSuccess, (state, action) => {
+    const extendedRecipeList = [...state.recipeList];
+    const updatedRecipeModel = { ...action.recipeModel };
+    updatedRecipeModel.id = action.id;
+    extendedRecipeList.push(updatedRecipeModel);
+    return {
+      ...state,
+      callState: LoadingState.LOADED,
+      recipeList: extendedRecipeList,
+    };
+  }),
+  on(RecipeActions.addRecipeError, (state, action) => ({
+    ...state,
+    callState: LoadingState.ERROR,
+    message: action.errorMessage,
   }))
 );
 
-export function reducer(state: RecipeState | undefined, action: Action) {
+export function reducer(
+  state: RecipeState | undefined,
+  action: Action
+): RecipeState {
   return scoreboardReducer(state, action);
 }

@@ -8,12 +8,16 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 export class DialogService {
   constructor(public dialog: MatDialog) {}
 
-  OpenConfirmDialog(title: string, yesLabel: string, noLabel: string) {
-    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+  OpenConfirmDialog(
+    title: string,
+    yesLabel: string,
+    noLabel: string
+  ): Promise<any> {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: title,
-        yesLabel: yesLabel,
-        noLabel: noLabel,
+        title: { title },
+        yesLabel: { yesLabel },
+        noLabel: { noLabel },
       },
     });
 

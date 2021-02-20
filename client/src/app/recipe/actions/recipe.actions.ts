@@ -17,7 +17,7 @@ export const addRecipe = createAction(
 );
 export const addRecipeSuccess = createAction(
   '[Recipe] Add recipe Success',
-  props<{ recipeResponse: any }>()
+  props<{ recipeModel: any; id: number }>()
 );
 export const addRecipeError = createAction(
   '[Recipe] Add recipe Failure',

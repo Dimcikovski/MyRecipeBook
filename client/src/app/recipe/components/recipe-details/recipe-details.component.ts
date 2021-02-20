@@ -1,10 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,6 +17,7 @@ import { Ingredient, INGREDIENTS, Recipe } from '../../models/recipe.model';
 })
 export class RecipeDetailsComponent implements OnInit {
   @Input() public newEntry: boolean;
+  @Output() public addRecipe: EventEmitter<Recipe> = new EventEmitter();
   public recipe: Recipe;
   public recipeForm: FormGroup;
   public ingredients: Ingredient[] = [];
@@ -30,7 +29,7 @@ export class RecipeDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private dialogService: DialogService,
-    private _snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class RecipeDetailsComponent implements OnInit {
     }
   }
 
-  InitForm() {
+  InitForm(): void {
     this.recipeForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
       source: [''],
@@ -49,12 +48,12 @@ export class RecipeDetailsComponent implements OnInit {
     });
   }
 
-  AddIngredient() {
-    let item = { ...this.ingredientsFormControl.value, quantity: 1 };
+  AddIngredient(): void {
+    const item = { ...this.ingredientsFormControl.value, quantity: 1 };
     this.selectedIngredients.push(item);
   }
 
-  IngredientExists() {
+  IngredientExists(): boolean {
     if (this.ingredientsFormControl.value) {
       const exists = this.selectedIngredients.filter(
         (item) => item.id === this.ingredientsFormControl.value.id
@@ -65,12 +64,12 @@ export class RecipeDetailsComponent implements OnInit {
     }
   }
 
-  Reset() {
+  Reset(): void {
     this.recipeForm.reset();
     this.selectedIngredients = [];
   }
 
-  Exit() {
+  Exit(): void {
     this.dialogService
       .OpenConfirmDialog(
         'Are you sure you want to exit recipe creation ?',
@@ -84,26 +83,26 @@ export class RecipeDetailsComponent implements OnInit {
       });
   }
 
-  RemoveIngredient(id: number) {
+  RemoveIngredient(id: number): void {
     this.selectedIngredients = this.selectedIngredients.filter(
       (item) => item.id !== id
     );
   }
 
-  UpdatedIngredient(ingredient: Ingredient) {
+  UpdatedIngredient(ingredient: Ingredient): void {
     this.selectedIngredients = this.selectedIngredients.filter(
       (item) => item.id !== ingredient.id
     );
     this.selectedIngredients.push(ingredient);
   }
 
-  Save() {
+  Save(): void {
     if (this.recipeForm.valid && this.selectedIngredients.length > 0) {
       if (
         this.recipeForm.value.minutes === 0 &&
         this.recipeForm.value.hours === 0
       ) {
-        this._snackBar.open('Preparation time cannot be 00:00!', '', {
+        this.snackBar.open('Preparation time cannot be 00:00!', '', {
           duration: 3000,
         });
       } else {
@@ -118,9 +117,11 @@ export class RecipeDetailsComponent implements OnInit {
           preparationInstructions: this.recipeForm.value
             .preparationInstructions,
         };
+
+        this.addRecipe.emit(createdRecipe);
       }
     } else if (this.recipeForm.valid && this.selectedIngredients.length === 0) {
-      this._snackBar.open('Please enter at least one ingredient!', '', {
+      this.snackBar.open('Please enter at least one ingredient!', '', {
         duration: 3000,
       });
     }
@@ -128,7 +129,7 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipeForm.markAllAsTouched();
   }
 
-  FormatPreporationTime(hours: number, minutes: number) {
+  FormatPreporationTime(hours: number, minutes: number): string {
     if (hours === 0) {
       if (minutes < 10) {
         return `00:0${minutes}`;
