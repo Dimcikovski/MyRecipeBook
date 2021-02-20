@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { Recipe } from '../../models/recipe.model';
 const ELEMENT_DATA = [];
@@ -8,6 +8,7 @@ const ELEMENT_DATA = [];
   styleUrls: ['./recipe-list-table.component.scss'],
 })
 export class RecipeListTableComponent implements OnInit {
+  @Input() data: Recipe[] = [];
   displayedColumns: string[] = [
     'id',
     'name',

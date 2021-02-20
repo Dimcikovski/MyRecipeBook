@@ -5,6 +5,6 @@
   <mat-divider></mat-divider>
 
   <mat-card-content>
-    <app-recipe-list-table></app-recipe-list-table>
+    <app-recipe-list-table [data]="recipeList$ | async"></app-recipe-list-table>
   </mat-card-content>
 </mat-card>
