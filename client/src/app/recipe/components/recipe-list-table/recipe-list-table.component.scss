@@ -10,3 +10,10 @@ table {
   overflow-y: auto;
   overflow-x: auto;
 }
+
+.recipe-list-table__actions {
+  .mat-icon {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+}
