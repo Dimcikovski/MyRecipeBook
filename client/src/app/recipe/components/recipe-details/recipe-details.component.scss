@@ -26,6 +26,23 @@ form {
   }
 }
 
+.recipe-details__ingredients-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.recipe-details__form-duration {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  .mat-form-field {
+    width: 50px;
+  }
+}
+
 .recipe-details__ingredients {
   width: 40%;
 }

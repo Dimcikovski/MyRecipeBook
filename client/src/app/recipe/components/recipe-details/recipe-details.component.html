@@ -4,23 +4,33 @@
       <mat-form-field>
         <mat-label>Recipe name</mat-label>
         <input matInput formControlName="name" required />
+        <mat-error>Required field</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Source</mat-label>
         <input matInput formControlName="source" />
+        <mat-error>Required field</mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Preparation</mat-label>
-        <input
-          matInput
-          placeholder="ex. 01:30, 00:25 .."
-          formControlName="preparation"
-          required
-        />
-      </mat-form-field>
+      <div class="recipe-details__form-duration">
+        <mat-form-field>
+          <mat-label>Hours</mat-label>
+          <input type="number" min="0" matInput formControlName="hours" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Minutes</mat-label>
+          <input
+            type="number"
+            min="0"
+            matInput
+            formControlName="minutes"
+            required
+          />
+        </mat-form-field>
+      </div>
       <mat-form-field>
         <mat-label>Preparation instructions</mat-label>
         <input matInput formControlName="preparationInstructions" required />
+        <mat-error>Required field</mat-error>
       </mat-form-field>
     </form>
   </div>
@@ -38,7 +48,7 @@
           >
             {{ ingredient.name }}
           </mat-option>
-          <mat-hint>Enter at least one ingredient</mat-hint>
+          <mat-error>Required field</mat-error>
         </mat-select>
       </mat-form-field>
       <button
@@ -56,13 +66,17 @@
         class="recipe-details__ingredients-list--item"
         *ngFor="let item of selectedIngredients"
       >
-        <app-recipe-ingredient [ingredient]="item"></app-recipe-ingredient>
+        <app-recipe-ingredient
+          [ingredient]="item"
+          (removeIngredient)="RemoveIngredient($event)"
+          (updatedIngredient)="UpdatedIngredient($event)"
+        ></app-recipe-ingredient>
       </div>
     </div>
   </div>
 </div>
 <div class="recipe-details__actions">
-  <button mat-raised-button color="primary">Save</button>
+  <button mat-raised-button color="primary" (click)="Save()">Save</button>
   <button mat-raised-button (click)="Reset()">Reset</button>
   <button mat-raised-button (click)="Exit()" color="warn">Exit</button>
 </div>

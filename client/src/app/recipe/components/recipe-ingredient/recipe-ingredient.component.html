@@ -1,9 +1,21 @@
-<div class="recipe-ingredient__container">
+<mat-card>
   <label>{{ ingredient.name }}</label>
   <mat-form-field>
-    <input matInput [formControl]="quantity" required />
-    <mat-error>Field is required</mat-error>
+    <input
+      matInput
+      type="number"
+      min="0"
+      [formControl]="quantity"
+      (change)="UpdateQuantity()"
+      required
+    />
+    <mat-error *ngIf="quantity.hasError('min')">Incorrect min value</mat-error>
+    <label matSuffix>{{ ingredient.metrics }}</label>
   </mat-form-field>
-  <label>{{ ingredient.metrics }}</label>
-  <mat-icon>delete</mat-icon>
-</div>
+  <mat-icon
+    matTooltip="Remove ingredient"
+    matTooltipPosition="above"
+    (click)="RemoveIngredient()"
+    >delete</mat-icon
+  >
+</mat-card>

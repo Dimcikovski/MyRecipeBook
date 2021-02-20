@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Ingredient } from '../../models/recipe.model';
 
@@ -9,9 +9,31 @@ import { Ingredient } from '../../models/recipe.model';
 })
 export class RecipeIngredientComponent implements OnInit {
   @Input() ingredient: Ingredient;
-  public quantity = new FormControl(1, [Validators.required]);
+
+  @Output() removeIngredient: EventEmitter<number> = new EventEmitter();
+  @Output() updatedIngredient: EventEmitter<Ingredient> = new EventEmitter();
+
+  public quantity = new FormControl(1, [
+    Validators.required,
+    Validators.min(1),
+  ]);
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.quantity.setValue(this.ingredient.quantity);
+  }
+
+  RemoveIngredient() {
+    this.removeIngredient.emit(this.ingredient.id);
+  }
+
+  UpdateQuantity() {
+    const updatedIngredient: Ingredient = {
+      ...this.ingredient,
+      quantity: this.quantity.value !== null ? this.quantity.value : 1,
+    };
+
+    this.updatedIngredient.emit(updatedIngredient);
+  }
 }
