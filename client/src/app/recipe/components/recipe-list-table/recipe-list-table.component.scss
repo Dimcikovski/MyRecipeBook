@@ -3,6 +3,11 @@ table {
   th {
     min-width: 100px;
   }
+  td {
+    .mat-cell {
+      padding-left: 10px;
+    }
+  }
 }
 
 .recipe-list-table__wrapper {
