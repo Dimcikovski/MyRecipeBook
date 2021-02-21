@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { deleteRecipe, getRecipeList } from '../../actions/recipe.actions';
+import { deleteRecipe } from '../../actions/recipe.actions';
 import { Recipe } from '../../models/recipe.model';
 import { RecipeState } from '../../reducers/recipe.reducer';
 import { takeWhile } from 'rxjs/operators';
 import { getRecipeCallState, getRecipesList } from '../../reducers';
 import { LoadingState } from 'src/app/shared/models/state.models';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-list',
@@ -20,7 +21,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<RecipeState>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +53,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       });
   }
 
-  DeleteRecipe(id: number) {
+  DeleteRecipe(id: number): void {
     this.store.dispatch(deleteRecipe({ recipeId: id }));
+  }
+
+  ViewRecipe(id: number): void {
+    this.router.navigate([`recipe/details/${id}`]);
   }
 }

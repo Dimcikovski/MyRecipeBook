@@ -15,6 +15,7 @@ export class RecipeListTableComponent implements OnInit {
   }
 
   @Output() deleteRecipe: EventEmitter<number> = new EventEmitter();
+  @Output() viewRecipe: EventEmitter<number> = new EventEmitter();
   public displayedColumns: string[] = [
     'id',
     'name',
@@ -44,5 +45,7 @@ export class RecipeListTableComponent implements OnInit {
       });
   }
 
-  ViewRecipe(recipe: Recipe): void {}
+  ViewRecipe(recipe: Recipe): void {
+    this.viewRecipe.emit(recipe.id);
+  }
 }

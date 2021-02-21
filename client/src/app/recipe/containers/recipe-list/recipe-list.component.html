@@ -8,6 +8,7 @@
     <app-recipe-list-table
       [data]="recipeList$ | async"
       (deleteRecipe)="DeleteRecipe($event)"
+      (viewRecipe)="ViewRecipe($event)"
     ></app-recipe-list-table>
   </mat-card-content>
 </mat-card>

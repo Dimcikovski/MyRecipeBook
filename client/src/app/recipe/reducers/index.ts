@@ -25,3 +25,11 @@ export const getRecipeCallState = createSelector(
     return state.callState;
   }
 );
+
+export const getRecipeDetails = createSelector(
+  getRecipeFeatureState,
+  (state: RecipeState, props) => {
+    const foundRecipe = state.recipeList.find((item) => item.id === props.id);
+    return foundRecipe;
+  }
+);

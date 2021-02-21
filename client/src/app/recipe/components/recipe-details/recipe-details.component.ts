@@ -16,7 +16,6 @@ import { Ingredient, INGREDIENTS, Recipe } from '../../models/recipe.model';
   styleUrls: ['./recipe-details.component.scss'],
 })
 export class RecipeDetailsComponent implements OnInit {
-  @Input() public newEntry: boolean;
   @Output() public addRecipe: EventEmitter<Recipe> = new EventEmitter();
   public recipe: Recipe;
   public recipeForm: FormGroup;
@@ -33,18 +32,16 @@ export class RecipeDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.newEntry) {
-      this.InitForm();
-    }
+    this.InitForm();
   }
 
   InitForm(): void {
     this.recipeForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
-      source: [''],
-      hours: [0],
-      minutes: new FormControl(0, [Validators.required]),
-      preparationInstructions: [''],
+      source: new FormControl(''),
+      hours: new FormControl(0, [Validators.max(23)]),
+      minutes: new FormControl(0, [Validators.required, Validators.max(59)]),
+      preparationInstructions: new FormControl(''),
     });
   }
 

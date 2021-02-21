@@ -29,6 +29,9 @@ export class RecipeIngredientComponent implements OnInit {
   }
 
   UpdateQuantity(): void {
+    if (this.quantity.value < 0) {
+      this.quantity.setValue(1);
+    }
     const updatedIngredient: Ingredient = {
       ...this.ingredient,
       quantity: this.quantity.value !== null ? this.quantity.value : 1,

@@ -13,6 +13,11 @@ import * as fromRecipe from './reducers/recipe.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { RecipeEffects } from './effects/recipe.effects';
 import { RecipeBookApiModule } from '../recipe-book-api/recipe-book-api.module';
+import { RecipeViewComponent } from './containers/recipe-view/recipe-view.component';
+import { RecipeViewDetailsComponent } from './components/recipe-view-details/recipe-view-details.component';
+import { IngredientsViewPipe } from './pipes/ingredients-view.pipe';
+import { InstructionsViewPipe } from './pipes/instructions-view.pipe';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +26,11 @@ import { RecipeBookApiModule } from '../recipe-book-api/recipe-book-api.module';
     RecipeAddComponent,
     RecipeDetailsComponent,
     RecipeIngredientComponent,
+    RecipeViewComponent,
+    RecipeViewDetailsComponent,
+    IngredientsViewPipe,
+    InstructionsViewPipe,
+    DurationPipe,
   ],
   imports: [
     CommonModule,

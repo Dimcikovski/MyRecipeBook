@@ -16,7 +16,7 @@ import { RecipeState } from '../../reducers/recipe.reducer';
 })
 export class RecipeAddComponent implements OnInit, OnDestroy {
   public componentActive = true;
-  private recipeListLength: number = 0;
+  private recipeListLength = 0;
   private synchedLength = false;
   constructor(
     private store: Store<RecipeState>,

@@ -17,19 +17,23 @@
 
     <ng-container matColumnDef="ingredients">
       <th mat-header-cell *matHeaderCellDef>Ingredients</th>
-      <td mat-cell *matCellDef="let element">Helloo</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.ingredients | ingredientsView }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="instructions">
       <th mat-header-cell *matHeaderCellDef>Instructions</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.preparationInstructions }}
+        {{ element.preparationInstructions | instructionsView }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="time">
       <th mat-header-cell *matHeaderCellDef>Preparation</th>
-      <td mat-cell *matCellDef="let element">{{ element.preparation }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.preparation | duration }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
