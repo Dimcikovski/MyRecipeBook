@@ -46,6 +46,24 @@ export class RecipeEffects {
     )
   );
 
+  deleteRecipe$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(recipeActions.deleteRecipe),
+      switchMap((action) =>
+        this.recipeApiService.DeleteRecipe(action.recipeId).pipe(
+          map(() =>
+            recipeActions.deleteRecipeSuccess({
+              recipeId: action.recipeId,
+            })
+          ),
+          catchError((err) =>
+            of(recipeActions.deleteRecipeError({ errorMessage: err }))
+          )
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private recipeApiService: MockApiService

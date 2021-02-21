@@ -53,6 +53,28 @@ const scoreboardReducer = createReducer(
     ...state,
     callState: LoadingState.ERROR,
     message: action.errorMessage,
+  })),
+  on(RecipeActions.deleteRecipe, (state) => ({
+    ...state,
+    callState: LoadingState.LOADING,
+  })),
+  on(RecipeActions.deleteRecipeSuccess, (state, action) => {
+    console.log(state.recipeList);
+    console.log(action.recipeId);
+    const filteredRecipeList = state.recipeList.filter(
+      (item) => item.id !== action.recipeId
+    );
+    console.log(filteredRecipeList);
+    return {
+      ...state,
+      callState: LoadingState.LOADED,
+      recipeList: filteredRecipeList,
+    };
+  }),
+  on(RecipeActions.deleteRecipeError, (state, action) => ({
+    ...state,
+    callState: LoadingState.ERROR,
+    message: action.errorMessage,
   }))
 );
 

@@ -12,6 +12,13 @@ export const getRecipesList = createSelector(
   }
 );
 
+export const getRecipeListLength = createSelector(
+  getRecipeFeatureState,
+  (state: RecipeState) => {
+    return state.recipeList.length;
+  }
+);
+
 export const getRecipeCallState = createSelector(
   getRecipeFeatureState,
   (state: RecipeState) => {

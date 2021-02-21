@@ -9,15 +9,15 @@ export class DialogService {
   constructor(public dialog: MatDialog) {}
 
   OpenConfirmDialog(
-    title: string,
-    yesLabel: string,
-    noLabel: string
+    dialogTitle: string,
+    confirm: string,
+    decline: string
   ): Promise<any> {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: { title },
-        yesLabel: { yesLabel },
-        noLabel: { noLabel },
+        title: dialogTitle,
+        yesLabel: confirm,
+        noLabel: decline,
       },
     });
 

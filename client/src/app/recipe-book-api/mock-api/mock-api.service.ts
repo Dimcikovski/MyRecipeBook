@@ -21,9 +21,12 @@ export class MockApiService {
   }
 
   DeleteRecipe(recipeId: number): Observable<RecipeDTO> {
-    return this.http.post<RecipeDTO>(`${this.SERVER_URL}/recipe/${recipeId}`, {
-      headers: this.headers,
-    });
+    return this.http.delete<RecipeDTO>(
+      `${this.SERVER_URL}/recipe/${recipeId}`,
+      {
+        headers: this.headers,
+      }
+    );
   }
 
   GetAllRecipes(): Observable<Recipe[]> {

@@ -30,7 +30,7 @@ export const deleteRecipe = createAction(
 );
 export const deleteRecipeSuccess = createAction(
   '[Recipe] Delete recipe Success',
-  props<{ recipeResponse: any }>()
+  props<{ recipeId: any }>()
 );
 export const deleteRecipeError = createAction(
   '[Recipe] Delete recipe Failure',

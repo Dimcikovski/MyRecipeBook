@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getRecipeList } from '../../actions/recipe.actions';
+import { deleteRecipe, getRecipeList } from '../../actions/recipe.actions';
 import { Recipe } from '../../models/recipe.model';
 import { RecipeState } from '../../reducers/recipe.reducer';
 import { takeWhile } from 'rxjs/operators';
@@ -24,7 +24,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(getRecipeList());
     this.recipeList$ = this.store.pipe(
       select(getRecipesList),
       takeWhile(() => this.componentActive)
@@ -50,5 +49,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
           });
         }
       });
+  }
+
+  DeleteRecipe(id: number) {
+    this.store.dispatch(deleteRecipe({ recipeId: id }));
   }
 }
