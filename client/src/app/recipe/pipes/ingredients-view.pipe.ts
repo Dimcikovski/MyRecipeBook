@@ -13,10 +13,10 @@ export class IngredientsViewPipe implements PipeTransform {
     }
   }
 
-  FormatIngredients(ingredients: Ingredient[], elipsis = false) {
-    let stringRepresentation = [];
+  FormatIngredients(ingredients: Ingredient[], elipsis = false): string {
+    const stringRepresentation = [];
     if (elipsis) {
-      let arraySlice = ingredients.slice(0, 3);
+      const arraySlice = ingredients.slice(0, 3);
 
       arraySlice.forEach((element) => {
         stringRepresentation.push(`${element.name}`);
