@@ -19,17 +19,13 @@ export class IngredientsViewPipe implements PipeTransform {
       let arraySlice = ingredients.slice(0, 3);
 
       arraySlice.forEach((element) => {
-        stringRepresentation.push(
-          `${element.quantity} ${element.metrics} ${element.name}`
-        );
+        stringRepresentation.push(`${element.name}`);
       });
 
       stringRepresentation.push('...');
     } else {
       ingredients.forEach((element) => {
-        stringRepresentation.push(
-          `${element.quantity} ${element.metrics} ${element.name}`
-        );
+        stringRepresentation.push(`${element.name}`);
       });
     }
 
