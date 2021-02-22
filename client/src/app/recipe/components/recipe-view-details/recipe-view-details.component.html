@@ -5,7 +5,7 @@
       >Source: {{ recipe.source }}</mat-card-subtitle
     >
     <mat-card-subtitle
-      >Duration: {{ recipe.preparation }} minutes</mat-card-subtitle
+      >Duration: {{ recipe.preparation | duration }} minutes</mat-card-subtitle
     >
   </mat-card-header>
   <mat-card-content class="recipe-view-details__content">
@@ -15,10 +15,11 @@
         <mat-list-item *ngFor="let ingredient of recipe.ingredients">
           <mat-icon mat-list-icon>label</mat-icon>
           <div mat-line>{{ ingredient.name }}</div>
-          <div mat-line>{{ ingredient.quantity }} {{ ingredient.metric }}</div>
+          <div mat-line>{{ ingredient.quantity }} {{ ingredient.metrics }}</div>
         </mat-list-item>
       </mat-list>
     </div>
+    <mat-divider [vertical]="true"></mat-divider>
     <div class="recipe-view-details__content--instructions">
       <label>
         {{ recipe.preparationInstructions }}
@@ -26,6 +27,8 @@
     </div>
   </mat-card-content>
   <mat-card-actions class="recipe-view-details__actions">
-    <button mat-raised-button color="warn">Delete</button>
+    <button mat-raised-button color="warn" (click)="DeleteRecipe()">
+      Delete
+    </button>
   </mat-card-actions>
 </mat-card>

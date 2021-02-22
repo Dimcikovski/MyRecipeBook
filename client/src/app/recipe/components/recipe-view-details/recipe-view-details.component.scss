@@ -7,3 +7,24 @@
   display: flex;
   flex-direction: row-reverse;
 }
+
+.recipe-view-details__content--instructions {
+  padding: 10px;
+  width: 70%;
+}
+
+.recipe-view-details__content--ingredients {
+  width: 30%;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.mat-list-item {
+  height: 20px;
+}
+
+@media (max-width: 600px) {
+  .recipe-view-details__content--ingredients {
+    width: 100%;
+  }
+}

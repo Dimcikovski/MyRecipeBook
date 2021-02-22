@@ -30,7 +30,6 @@ export const getRecipeDetails = createSelector(
   getRecipeFeatureState,
   (state: RecipeState, props) => {
     const foundRecipe = state.recipeList.find((item) => item.id === props.id);
-    console.log(foundRecipe);
     return foundRecipe;
   }
 );

@@ -1,1 +1,4 @@
-<app-recipe-view-details [recipe]="recipe$ | async"></app-recipe-view-details>
+<app-recipe-view-details
+  [recipe]="recipe"
+  (deleteRecipe)="DeleteRecipe($event)"
+></app-recipe-view-details>

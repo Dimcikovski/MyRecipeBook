@@ -59,12 +59,9 @@ const scoreboardReducer = createReducer(
     callState: LoadingState.LOADING,
   })),
   on(RecipeActions.deleteRecipeSuccess, (state, action) => {
-    console.log(state.recipeList);
-    console.log(action.recipeId);
     const filteredRecipeList = state.recipeList.filter(
       (item) => item.id !== action.recipeId
     );
-    console.log(filteredRecipeList);
     return {
       ...state,
       callState: LoadingState.LOADED,

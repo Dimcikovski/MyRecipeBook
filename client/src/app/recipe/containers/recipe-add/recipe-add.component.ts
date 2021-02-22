@@ -33,7 +33,6 @@ export class RecipeAddComponent implements OnInit, OnDestroy {
   }
 
   AddRecipe(recipe: Recipe): void {
-    // console.log(recipe);
     this.store.dispatch(addRecipe({ recipeModel: recipe }));
   }
 
