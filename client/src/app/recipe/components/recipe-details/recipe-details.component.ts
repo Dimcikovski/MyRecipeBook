@@ -127,6 +127,9 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   FormatPreporationTime(hours: number, minutes: number): string {
+    if (hours === null) {
+      hours = 0;
+    }
     if (hours === 0) {
       if (minutes < 10) {
         return `00:0${minutes}`;
