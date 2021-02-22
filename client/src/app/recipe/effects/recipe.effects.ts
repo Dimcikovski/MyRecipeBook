@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
@@ -12,7 +11,7 @@ export class RecipeEffects {
   loadRecipeList$ = createEffect(() =>
     this.actions$.pipe(
       ofType(recipeActions.getRecipeList),
-      switchMap((action) =>
+      switchMap(() =>
         this.recipeApiService.GetAllRecipes().pipe(
           map((responseData) =>
             recipeActions.getRecipeListSuccess({

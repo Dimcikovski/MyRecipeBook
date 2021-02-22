@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="recipe">
   <mat-card-header>
     <mat-card-title>{{ recipe.name }}</mat-card-title>
     <mat-card-subtitle *ngIf="recipe.source"

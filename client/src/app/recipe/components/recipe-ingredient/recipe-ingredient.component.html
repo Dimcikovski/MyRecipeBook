@@ -1,5 +1,5 @@
 <mat-card>
-  <label>{{ ingredient.name }}</label>
+  <label *ngIf="ingredient">{{ ingredient.name }}</label>
   <mat-form-field>
     <input
       matInput
@@ -10,7 +10,7 @@
       required
     />
     <mat-error *ngIf="quantity.hasError('min')">Incorrect min value</mat-error>
-    <label matSuffix>{{ ingredient.metrics }}</label>
+    <label matSuffix *ngIf="ingredient">{{ ingredient.metrics }}</label>
   </mat-form-field>
   <mat-icon
     matTooltip="Remove ingredient"

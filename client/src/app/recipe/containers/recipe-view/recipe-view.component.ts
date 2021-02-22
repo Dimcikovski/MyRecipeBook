@@ -1,8 +1,6 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 import { deleteRecipe } from '../../actions/recipe.actions';
 import { Recipe } from '../../models/recipe.model';
@@ -27,7 +25,6 @@ export class RecipeViewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     const intId = parseInt(id, 10);
-    // this.recipe$ = this.store.select(getRecipeDetails, { id: intId });
     this.store
       .pipe(
         select(getRecipeDetails, { id: intId }),
@@ -37,7 +34,7 @@ export class RecipeViewComponent implements OnInit, OnDestroy {
         if (recipe) {
           this.recipe = recipe;
         } else {
-          // this.router.navigate(['recipe/list']);
+          this.router.navigate(['recipe/list']);
         }
       });
   }

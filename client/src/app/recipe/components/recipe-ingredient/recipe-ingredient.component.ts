@@ -21,7 +21,9 @@ export class RecipeIngredientComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.quantity.setValue(this.ingredient.quantity);
+    if (this.ingredient) {
+      this.quantity.setValue(this.ingredient.quantity);
+    }
   }
 
   RemoveIngredient(): void {
