@@ -1,6 +1,7 @@
 # My Recipe Book
 
-This repository contains the solution for interview assingment from Sourcico : https://github.com/Sourcico/tests/blob/master/Angular/Recipes.md. This solutions consist of a Angular frontend application and a mock REST API using https://github.com/typicode/json-server.
+Simple recipe book frontend app with NGRX state managment.
+This solutions consist of a Angular frontend application and a mock REST API using https://github.com/typicode/json-server.
 
 # Roles
 
